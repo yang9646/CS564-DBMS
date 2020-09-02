@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!-- 
+   UW-Madison, CS 564, Summer 2020, Team 8 Final Project: Game Ranking Database
+   GUI/Front End by @author Nate Sackett
+   Requires JavaFX and mysql-connector; fxml GUI design implemented using SceneBuilder
+ 
+   Main.fxml designed using SceneBuilder; read into Main.java to implement JavaFX Window
+-->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="958.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+   <children>
+      <VBox prefHeight="665.0" prefWidth="958.0">
+         <children>
+            <TableView fx:id="data" prefHeight="310.0" prefWidth="958.0">
+               <columns>
+                  <TableColumn fx:id="tGameRank" prefWidth="48.0" text="Rank" />
+                  <TableColumn fx:id="tGID" prefWidth="47.0" text="GID" />
+                  <TableColumn fx:id="tGameName" prefWidth="200.0" text="GameName" />
+                  <TableColumn fx:id="tPlatform" prefWidth="75.0" text="Platform" />
+                  <TableColumn fx:id="tYear" prefWidth="65.0" text="Year" />
+                  <TableColumn fx:id="tGenre" prefWidth="85.0" text="Genre" />
+                  <TableColumn fx:id="tPublisher" prefWidth="75.0" text="Publisher" />
+                  <TableColumn fx:id="tNA_Sales" prefWidth="70.0" text="NA_Sales" />
+                  <TableColumn fx:id="tEU_Sales" prefWidth="70.0" text="EU_Sales" />
+                  <TableColumn fx:id="tJP_Sales" prefWidth="70.0" text="JP_Sales" />
+                  <TableColumn fx:id="tOther_Sales" prefWidth="70.0" text="Other_Sales" />
+                  <TableColumn fx:id="tGlobal_Sales" prefWidth="75.0" text="Global_Sales" />
+               </columns>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </TableView>
+            <HBox prefHeight="50.0" prefWidth="958.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="95.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#searchGame" prefHeight="50.0" prefWidth="91.0" text="Search for Game" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="GameName" />
+                        <TextField fx:id="sGameName" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="958.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="95.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#insertGame" prefHeight="50.0" prefWidth="91.0" text="Insert Game" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="GameName" />
+                        <TextField fx:id="iGameName" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="75.0">
+                     <children>
+                        <Label text="Platform" />
+                        <TextField fx:id="iPlatform" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="65.0">
+                     <children>
+                        <Label text="Year" />
+                        <TextField fx:id="iYear" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="85.0">
+                     <children>
+                        <Label text="Genre" />
+                        <TextField fx:id="iGenre" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="75.0">
+                     <children>
+                        <Label text="Publisher" />
+                        <TextField fx:id="iPublisher" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label text="NA_Sales" />
+                        <TextField fx:id="iNA_Sales" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label text="EU_Sales" />
+                        <TextField fx:id="iEU_Sales" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label text="JP_Sales" />
+                        <TextField fx:id="iJP_Sales" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label text="Other_Sales" />
+                        <TextField fx:id="iOther_Sales" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="958.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="95.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#deleteGame" prefHeight="50.0" prefWidth="91.0" text="Delete Game" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="GameName" />
+                        <TextField fx:id="dGameName" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="75.0">
+                     <children>
+                        <Label text="Platform" />
+                        <TextField fx:id="dPlatform" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="958.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="95.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#updateSales" prefHeight="50.0" prefWidth="91.0" text="Update Sales" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="GameName" />
+                        <TextField fx:id="uGameName" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="75.0">
+                     <children>
+                        <Label text="Platform" />
+                        <TextField fx:id="uPlatform" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="225.0" />
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label text="NA_Sales" />
+                        <TextField fx:id="uNA_Sales" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label text="EU_Sales" />
+                        <TextField fx:id="uEU_Sales" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label text="JP_Sales" />
+                        <TextField fx:id="uJP_Sales" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label text="Other_Sales" />
+                        <TextField fx:id="uOther_Sales" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="958.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="95.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#updateGlobalSales" prefHeight="50.0" prefWidth="91.0" text="Recalculate Global Sales" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="95.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#updateRank" prefHeight="50.0" prefWidth="91.0" text="Recalculate Ranks" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="958.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#topGamePlatform" prefHeight="50.0" prefWidth="90.0" text="Top Game by Platform" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#topGameGenre" prefHeight="50.0" prefWidth="90.0" text="Top Game by Genre" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#topGameYear" prefHeight="50.0" prefWidth="90.0" text="Top Game by Year" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#topNAYear" prefHeight="50.0" prefWidth="90.0" text="Top NA Game by Year" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#topEUYear" prefHeight="50.0" prefWidth="90.0" text="Top EU Game by Year" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#topJPYear" prefHeight="50.0" prefWidth="90.0" text="Top JP Game by Year" textAlignment="CENTER" wrapText="true" />
+               </children></HBox>
+            <HBox prefHeight="50.0" prefWidth="958.0">
+               <children>
+                  <VBox prefHeight="50.0" prefWidth="379.0" />
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#refreshDB" prefHeight="50.0" prefWidth="200.0" text="Refresh Database" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
